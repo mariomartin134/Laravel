@@ -45,7 +45,6 @@
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
-                    <img src="assets/img/mario.jpg" alt="Profile Photo">
                   </div>
                   <b class="caret d-none d-lg-block d-xl-block"></b>
                   <p class="d-lg-none">
@@ -85,7 +84,6 @@
                 <div class="row">
                   <div class="col-sm-6 text-left">
                     <h2 class="card-title">Universitas Pendidikan Ganesha</h2>
-                    <h5 class="card-category">Biodata Mahasiswa</h5>
                   </div>
                   
                   <div class="col-sm-6">
@@ -115,49 +113,43 @@
                   </div>
                 </div>
               </div>
-              <div class="panel-body">
-                    <div class="col-lg-12">
-                    
-                    <div class ="col-lg-12 form-group">
-                        <div class="col-md-4 no-margin">
-                          <p style="color:white;">Nama :</p>
-                        </div>
-                        <div class="col-md-8 no-margin">
-                            <p style="color:white;">Mario Martin Da Silva</p>
-                        </div>
+          <form action="{{(isset($subak))?route('subak.update',$subak->id_anggota):route('subak.store')}}" method="POST">
+            @csrf
+            @if(isset($subak))?@method('PUT')
+            @endif
+            <div class="panel-body">
+                  <div class="form-group">
+                      <label class="control-label col-lg-2">Nama Anggota</label>
+                      <div class="col-lg-10">
+                        <input type="text" value="{{(isset($subak))?$subak->nama_anggota:old('nama_anggota')}}" name="nama_anggota" class="form-control">
+                        @error('nama_anggota')<small style="color:red">{{$message}}</small>@enderror
                       </div>
-                      <div class="col-lg-12 form-group">
-                          <div class="col-md-4 no-margin">
-                            <p style="color:white;">NIM :</p>
-                          </div>
-                          <div class="col-md-8 no-margin">
-                            <p style="color:white;">1815051088</p>
-                        </div>   
-            </div>
-              <div class="card-body">
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2">No Telpon</label>
+                      <div class="col-lg-10">
+                        <input type="text" value="{{(isset($subak))?$subak->no_telp:old('no_telp')}}" name="no_telp" class="form-control">
+                        @error('no_telp')<small style="color:red">{{$message}}</small>@enderror
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label col-lg-2">Alamat Anggota</label>
+                      <div class="col-lg-10">
+                        <input type="text" value="{{(isset($subak))?$subak->alamat_anggota:old('alamat_anggota')}}" name="alamat_anggota" class="form-control">
+                        @error('alamat_anggota')<small style="color:red">{{$message}}</small>@enderror
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <button type="submit">SIMPAN</button>
+                    </div>
+                    </div>  
+                  </form>
+                  </div>
+              </div>
+        <div class="row">
+              <div class="card-body">          
                 <div class="chart-area">
-                <div class="col-lg-12">
-                  <a href="{{route('subak.create')}}">Tambah Data</a>
-                <table class="table table bordered">
-                              <thead>
-                                  <tr><th></th><th>ID Anggota</th><th>Nama Anggota</th><th>No Telepon</th><th>Alamat Anggota</th><th>Aksi</th></tr>
-                              </thead>
-                              <tbody>
-                                  @foreach ($subak as $in=>$val )
-                                      <tr><td>{{($in+1)}}</td><td>{{$val->id_subak}}</td><td>{{$val->nama_anggota}}</td><td>{{$val->no_telp}}</td><td>{{$val->alamat_anggota}}</td>
-                                      <td>
-                                      <a href="{{route('subak.edit',$val->id_subak)}}">Update</a>
-                                      <form action="{{route('subak.destroy',$val->id_subak)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                      <button type="submit">Delete</button>
-                                      </form>
-                                      </td></tr>
-                                  @endforeach
-                              <t/body>
-                            </table>
-                            {{$subak->links()}}
-                  <canvas id="chartBig1"></canvas>
+                  <div class="panel-body">
                 </div>
               </div>
             </div>
@@ -169,20 +161,20 @@
                   <div class="panel-body">   
               </div>
   <!--   Core JS Files   -->
-  <script src="assets/js/core/jquery.min.js"></script>
-  <script src="assets/js/core/popper.min.js"></script>
-  <script src="assets/js/core/bootstrap.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
+  <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
+  <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
+  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
   <!--  Google Maps Plugin    -->
   <!-- Place this tag in your head or just before your close body tag. -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chart JS -->
-  <script src="assets/js/plugins/chartjs.min.js"></script>
+  <script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
   <!--  Notifications Plugin    -->
-  <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="assets/js/black-dashboard.min.js?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script src="assets/demo/demo.js"></script>
+  <script src="{{asset('assets/js/black-dashboard.min.js')}}?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
+  <script src="{{asset('assets/demo/demo.js')}}"></script>
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -312,4 +304,4 @@
 
 
 </div><div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-@endsection('content')
+@endsection

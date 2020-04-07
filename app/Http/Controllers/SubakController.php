@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Subak;
 use Illuminate\Http\Request;
 
 class SubakController extends Controller
@@ -14,7 +15,8 @@ class SubakController extends Controller
     public function index()
     {
         $title='Subak';
-        return view('admin.subak',compact('title'));
+        $subak=subak::paginate(5);
+        return view('admin.subak',compact('title','subak'));
     }
 
     /**
@@ -24,7 +26,8 @@ class SubakController extends Controller
      */
     public function create()
     {
-        //
+        $title='Input Subak';
+        return view('admin.inputsubak',compact('title'));
     }
 
     /**
@@ -35,7 +38,19 @@ class SubakController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+        'required'=> 'Kolom :attribute Harus di isi dengan lengkap',
+        'date'    => 'Kolom :attribute Harus Tanggal.',
+        'numeric' => 'Kolom :attribute Harus di isi dengan Angka.',
+        ];
+        $validasi = $request->validate([
+            'nama_anggota'=>'required',
+            'no_telp'=>'numeric',
+            'alamat_anggota'=>'required'
+        ],$messages);
+        //dd($validasi);
+        Subak::create($validasi);
+        return redirect('subak')->with('success', 'Data Berhasil di update');
     }
 
     /**
@@ -57,7 +72,9 @@ class SubakController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title='Input Subak';
+        $subak=Subak::find($id);
+        return view('admin.inputsubak',compact('title','subak'));
     }
 
     /**
@@ -69,7 +86,19 @@ class SubakController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $messages = [
+            'required'=> 'Kolom :attribute Harus di isi dengan lengkap',
+            'date'    => 'Kolom :attribute Harus Tanggal.',
+            'numeric' => 'Kolom :attribute Harus di isi dengan Angka.',
+            ];
+            $validasi = $request->validate([
+                'nama_anggota'=>'required',
+                'no_telp'=>'numeric',
+                'alamat_anggota'=>'required'
+            ],$messages);
+            //dd($validasi);
+            Subak::whereid_subak($id)->update($validasi);
+            return redirect('subak')->with('success', 'Data Berhasil di update');
     }
 
     /**
@@ -80,6 +109,7 @@ class SubakController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Subak::whereid_subak($id)->delete();
+        return redirect('subak')->with('success', 'Data Berhasil di Hapus');
     }
 }
