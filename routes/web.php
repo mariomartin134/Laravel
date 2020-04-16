@@ -18,3 +18,13 @@ Route::get('/', function () {
 /*Route::get('/subak', 'AdminController@index');*/
 
 Route::resource('subak', 'SubakController');
+
+Auth::routes();
+
+Route::get('/subak', 'SubakController@index')->name('home');
+
+Route::resource('dashboard', 'DashboardController');
+
+Auth::routes();
+
+Route::get('/home', 'dashboardController@index')->name('home');

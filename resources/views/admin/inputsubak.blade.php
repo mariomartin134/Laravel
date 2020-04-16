@@ -113,10 +113,9 @@
                   </div>
                 </div>
               </div>
-          <form action="{{(isset($subak))?route('subak.update',$subak->id_anggota):route('subak.store')}}" method="POST">
+            <form action="{{(isset($subak))?route('subak.update',$subak->id_subak):route('subak.store')}}" method="POST">
             @csrf
-            @if(isset($subak))?@method('PUT')
-            @endif
+            @if(isset($subak))?@method('PUT')@endif
             <div class="panel-body">
                   <div class="form-group">
                       <label class="control-label col-lg-2">Nama Anggota</label>
@@ -140,7 +139,8 @@
                       </div>
                     </div>
                     <div class="form-group">
-                      <button type="submit">SIMPAN</button>
+                      <div>
+                     <br><button type="submit">SIMPAN</button></br>
                     </div>
                     </div>  
                   </form>
@@ -160,21 +160,7 @@
                 <div class="chart-area">
                   <div class="panel-body">   
               </div>
-  <!--   Core JS Files   -->
-  <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
-  <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
-  <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
-  <script src="{{asset('assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
-  <!--  Google Maps Plugin    -->
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <!-- Chart JS -->
-  <script src="{{asset('assets/js/plugins/chartjs.min.js')}}"></script>
-  <!--  Notifications Plugin    -->
-  <script src="{{asset('assets/js/plugins/bootstrap-notify.js')}}"></script>
-  <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{asset('assets/js/black-dashboard.min.js')}}?v=1.0.0"></script><!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{asset('assets/demo/demo.js')}}"></script>
+
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -193,7 +179,7 @@
         fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
 
-
+        
         $('.fixed-plugin a').click(function(event) {
           if ($(this).hasClass('switch-trigger')) {
             if (event.stopPropagation) {

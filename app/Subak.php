@@ -9,7 +9,7 @@ class Subak extends Model
     //
     public $timestamps = false;
     protected $table='anggota';
-    protected $primarykey='id_anggota';
+    protected $primarykey='id_subak';
     protected $fillable=[
         'nama_anggota','no_telp','alamat_anggota',
     ];

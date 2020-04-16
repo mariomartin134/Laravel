@@ -4,14 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Subak;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class SubakController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function($request, $next){
+            if(Gate::allows('admin')) return $next($request);
+            abort(403, 'Anda tidak memiliki cukup hak Akses');
+        });
+    }
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
         $title='Subak';
@@ -73,7 +83,7 @@ class SubakController extends Controller
     public function edit($id)
     {
         $title='Input Subak';
-        $subak=Subak::find($id);
+        $subak=Subak::findorfail($id);
         return view('admin.inputsubak',compact('title','subak'));
     }
 

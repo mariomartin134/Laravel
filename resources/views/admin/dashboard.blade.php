@@ -91,7 +91,6 @@
                 <div class="row">
                   <div class="col-sm-6 text-left">
                     <h2 class="card-title">Universitas Pendidikan Ganesha</h2>
-                    <h5 class="card-category">Biodata Mahasiswa</h5>
                   </div>
                   
                   <div class="col-sm-6">
@@ -121,60 +120,71 @@
                   </div>
                 </div>
               </div>
-              <div class="panel-body">
-                    <div class="col-lg-12">
-                    
-                    <div class ="col-lg-12 form-group">
+              <div class="panel panel-flat border-top-lg border-top-primary">
+        <div class="panel-body">
+            <div class="col-lg-12">
+            <div class="col-lg-6">
+                <blockquote col="col-md-12">
+                        <b>BIODATA MAHASISWA</b>
+                    </blockquote>
+                    <div class="col-lg-12 form-group">
                         <div class="col-md-4 no-margin">
-                          <p style="color:white;">Nama :</p>
+                            Nama :
                         </div>
                         <div class="col-md-8 no-margin">
-                            <p style="color:white;">Mario Martin Da Silva</p>
+                            Mario Martin Da Silva
                         </div>
-                      </div>
-                      <div class="col-lg-12 form-group">
-                          <div class="col-md-4 no-margin">
-                            <p style="color:white;">NIM :</p>
-                          </div>
-                          <div class="col-md-8 no-margin">
-                            <p style="color:white;">1815051088</p>
-                        </div>   
+                    </div>
+                    <div class="col-lg-12 form-group">
+                        <div class="col-md-4 no-margin">
+                            Nim :
+                        </div>
+                        <div class="col-md-8 no-margin">
+                            1815051088
+                        </div>
+                    </div>
+                    <div class="col-lg-12 form-group">
+                        <div class="col-md-4 no-margin">
+                            Program Study :
+                        </div>
+                        <div class="col-md-8 no-margin">
+                            Pendidikan Teknik Informatika
+                        </div>
+                    </div>
             </div>
-              <div class="card-body">
-                <div class="chart-area">
-                <div class="col-lg-12">
-                  <a href="{{route('subak.create')}}">Tambah Data</a>
-                <table class="table table bordered">
-                              <thead>
-                                  <tr><th></th><th>ID Anggota</th><th>Nama Anggota</th><th>No Telepon</th><th>Alamat Anggota</th><th>Aksi</th></tr>
-                              </thead>
-                              <tbody>
-                                  @foreach ($subak as $in=>$val )
-                                      <tr><td>{{($in+1)}}</td><td>{{$val->id_subak}}</td><td>{{$val->nama_anggota}}</td><td>{{$val->no_telp}}</td><td>{{$val->alamat_anggota}}</td>
-                                      <td>
-                                      <a href="{{route('subak.edit',$val->id_subak)}}">Update</a>
-                                      <form action="{{route('subak.destroy',$val->id_subak)}}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                      <button type="submit">Delete</button>
-                                      </form>
-                                      </td></tr>
-                                  @endforeach
-                              <t/body>
-                            </table>
-                            {{$subak->links()}}
-                  <canvas id="chartBig1"></canvas>
+            <div class="col-lg-6">
+                 <blockquote col="col-md-12">
+                        <b>STUDI KASUS</b>
+                    </blockquote>
+                    <div class="col-lg-12 form-group">
+                        <div class="col-md-2 no-margin">
+                            Judul :
+                        </div>
+                        <div class="col-md-8 no-margin">
+                            Sistem Subak
+                        </div>
+                    </div>
+                    <div class="col-lg-12 form-group">
+                        <div class="col-md-2 no-margin">
+                        Sistem :
+                        </div>
+                        <div class="col-md-8 no-margin">
+                        Sistem subak ini bertujuan untuk memberikan informasi tentang subak kepada masyarakat
+                        </div>
+                    </div>
+                        <canvas id="chartBig1"></canvas>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
-              <div class="card-body">          
+              <div class="card-body">    
+                    
                 <div class="chart-area">
                   <div class="panel-body">   
               </div>
 <div>
 
 </div><div class="ps__rail-x" style="left: 0px; bottom: 0px;"><div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__rail-y" style="top: 0px; right: 0px;"><div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
-@endsection('content')
+@endsection('content') 
